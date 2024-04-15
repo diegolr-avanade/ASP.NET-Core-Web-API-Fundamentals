@@ -1,11 +1,29 @@
+using Microsoft.AspNetCore.StaticFiles;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers(options =>
+{
+    options.ReturnHttpNotAcceptable = true;
+}).AddXmlDataContractSerializerFormatters();
+
+
+//builder.Services.AddProblemDetails(options =>
+//{
+//    options.CustomizeProblemDetails = ctx =>
+//    {
+//        ctx.ProblemDetails.Extensions.Add("additionalInfo",
+//            "Additional info example");
+//        ctx.ProblemDetails.Extensions.Add("server", 
+//            Environment.MachineName);
+//    };
+//});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
 
 var app = builder.Build();
 
@@ -24,7 +42,7 @@ app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
-    _ = endpoints.MapControllers();
+    endpoints.MapControllers();
 });
 
 app.Run();
