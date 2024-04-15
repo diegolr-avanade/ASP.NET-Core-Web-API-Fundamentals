@@ -1,4 +1,4 @@
-namespace CityInfoAPI
+namespace CityInfo.API
 {
     public class WeatherForecast
     {
