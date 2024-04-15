@@ -9,6 +9,12 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.Run(async (context) =>
+{
+    await context.Response.WriteAsync("Hello World!");
+}
+);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -16,10 +22,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
-app.MapControllers();
+//app.MapControllers();
 
 app.Run();
