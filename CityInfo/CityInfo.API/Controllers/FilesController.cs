@@ -23,7 +23,7 @@ namespace CityInfo.API.Controllers
         {
             // look up the actual file, depending on the fileId...
             // demo code
-            var pathToFile = "fileToCopy.pdf";
+            var pathToFile = "getting-started-with-rest-slides.pdf";
 
             // check whether the file exists
             if (!System.IO.File.Exists(pathToFile))
