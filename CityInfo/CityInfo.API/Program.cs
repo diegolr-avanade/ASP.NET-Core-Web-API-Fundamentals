@@ -21,6 +21,11 @@ using System.Text;
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
     .WriteTo.Console()
+    .WriteTo.File("logs/cityinfo.txt", rollingInterval: RollingInterval.Day)
+    //.WriteTo.ApplicationInsights(new TelemetryConfiguration()
+    //{
+    //    InstrumentationKey = "ffaa3a5f-b6c0-4d0d-b630-4278ba703023"
+    //}, TelemetryConverter.Traces)
     .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,13 +43,6 @@ if (environment == Environments.Development)
 }
 else
 {
-    var secretClient = new SecretClient(
-            new Uri("https://pluralsightdemokeyvault.vault.azure.net/"),
-            new DefaultAzureCredential());
-    builder.Configuration.AddAzureKeyVault(secretClient,
-        new KeyVaultSecretManager());
-
-
     builder.Host.UseSerilog(
         (context, loggerConfiguration) => loggerConfiguration
             .MinimumLevel.Debug()
