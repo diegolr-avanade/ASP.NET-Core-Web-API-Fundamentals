@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "Diego-CityInfoAPI",
+      "defaultValue": "CityInfoAPI-Diego",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }
